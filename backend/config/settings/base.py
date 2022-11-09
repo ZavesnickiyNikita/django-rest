@@ -20,32 +20,34 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AUTH_USER_MODEL = "users.User"
+AUTH_USER_MODEL = 'users.User'
 
 # Application definition
 
 DJANGO_APPS = [
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
 ]
 
 THIRD_PARTY = [
-    "rest_framework",
-    "rest_framework_swagger",
-    "django_filters",
-    "djoser",
-    "corsheaders",
-    "versatileimagefield",
-    "constance",
-    "constance.backends.database",
+    'rest_framework',
+    'rest_framework_swagger',
+    'django_filters',
+    'djoser',
+    'corsheaders',
+    'versatileimagefield',
+    'constance',
+    'constance.backends.database',
+    'ckeditor',
 ]
 
 LOCAL_APPS = [
     'users',
+    'posts',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY + LOCAL_APPS
@@ -150,4 +152,16 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 10,
     "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
+}
+
+CONSTANCE_ADDITIONAL_FIELDS = {
+    'language-select': ['django.forms.fields.ChoiceField', {
+        'widget': 'django.forms.Select',
+        'choices': (("EN", "English"), ("NO", "Norway"))
+    }]
+}
+
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
+CONSTANCE_CONFIG = {
+    'LANGUAGE': ('EN', 'Select language', 'language_select'),
 }

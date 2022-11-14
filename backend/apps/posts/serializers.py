@@ -1,6 +1,8 @@
 from rest_framework import serializers
 
-from .models import Post
+from versatileimagefield.serializers import VersatileImageFieldSerializer
+
+from .models import Post, PostImage
 
 
 class PostImageSerializer(serializers.ModelSerializer):
@@ -16,7 +18,11 @@ class PostImageSerializer(serializers.ModelSerializer):
             ('small_square_crop', 'crop_50x50'),
         ]
     )
+
+
 class PostSerializer(serializers.ModelSerializer):
+    images = PostImageSerializer(source='postimage_set', many=True)
+
     class Meta:
         model = Post
         fields = '__all__'

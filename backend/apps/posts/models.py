@@ -14,3 +14,4 @@ class Post(BaseModel):
 
 class PostImage(BaseImage):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True, blank=True)
+    title = 'Картинки'

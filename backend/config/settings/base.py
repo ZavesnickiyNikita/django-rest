@@ -129,6 +129,12 @@ USE_I18N = True
 
 USE_TZ = True
 
+STATIC_ROOT = os.path.join(STATIC_DIR, 'static/')
+MEDIA_ROOT = os.path.join(STATIC_DIR, 'media/')
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -155,7 +161,7 @@ REST_FRAMEWORK = {
 }
 
 CONSTANCE_ADDITIONAL_FIELDS = {
-    'language-select': ['django.forms.fields.ChoiceField', {
+    'language_select': ['django.forms.fields.ChoiceField', {
         'widget': 'django.forms.Select',
         'choices': (("EN", "English"), ("NO", "Norway"))
     }]
